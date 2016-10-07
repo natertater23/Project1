@@ -26,6 +26,9 @@ public:
           const std::string& name,
           double price) {
     // TODO: implement this function properly
+    this.code = code;
+    this.name = name;
+    this.price = price;
     throw std::logic_error("not implemented yet");
   }
 
@@ -52,29 +55,42 @@ public:
   // std::invalid_argument.
   Catalog(int maxProducts) {
     // TODO: implement this function properly
+    this.maxProducts = maxProducts;
+    list = new array();
     throw std::logic_error("not implemented yet");
   }
   
   ~Catalog() {
     // TODO: implement this function properly
+    delete [] list;
     throw std::logic_error("not implemented yet");
   }
 
   // Accessors.
   int getMaxProducts() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    if(maxProducts > 0)
+     return maxProducts;
+    else
+     throw std::logic_error("not implemented yet");
   }
   
   int getNumProducts() const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+    if(list.size() == 0)
+      throw std::logic_error("not implemented yet");
+    else
+     return list.size();
   }
 
   // Return true when the catalog cannot fit any more products.
   bool isFull() const {
     // TODO: implement this function properly
+    if(maxProducts == 0)
     throw std::logic_error("not implemented yet");
+    if(list.size() == maxProducts)
+      return true;
+    return false;
   }
 
   // Add a new product to the catalog with a given code and name.
@@ -90,7 +106,12 @@ public:
                   const std::string& name,
                   double price) {
     // TODO: implement this function properly
+    for (int i = 0; i < list.size(); i++)
+    {
+      if (code == list[i].findCode
+    }
     throw std::logic_error("not implemented yet");
+    list.add(new Product(code, name, price);
   }
 
   // Find a product by its code.
@@ -108,4 +129,6 @@ public:
 
 private:
   // TODO: add data members
+  int maxProducts;
+  array<Product> list;
 };
