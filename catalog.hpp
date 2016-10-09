@@ -26,9 +26,9 @@ public:
           const std::string& name,
           double price) {
     // TODO: implement this function properly
-    this.code = code;
-    this.name = name;
-    this.price = price;
+    this->code = code;
+    this->name = name;
+    this->price = price;
     throw std::logic_error("not implemented yet");
   }
 
@@ -55,8 +55,8 @@ public:
   // std::invalid_argument.
   Catalog(int maxProducts) {
     // TODO: implement this function properly
-    this.maxProducts = maxProducts;
-    list = new array();
+    this->maxProducts = maxProducts;
+    list = new Product[maxProducts];
     throw std::logic_error("not implemented yet");
   }
   
@@ -108,7 +108,7 @@ public:
     // TODO: implement this function properly
     for (int i = 0; i < list.size(); i++)
     {
-      if (code == list[i].findCode
+      if (code == list[i].findCode)
     }
     throw std::logic_error("not implemented yet");
     list.add(new Product(code, name, price);
@@ -130,5 +130,5 @@ public:
 private:
   // TODO: add data members
   int maxProducts;
-  array<Product> list;
+ Product *list;
 };
