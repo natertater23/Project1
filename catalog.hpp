@@ -26,10 +26,11 @@ public:
           const std::string& name,
           double price) {
     // TODO: implement this function properly
+     if(price < 0)
+      throw std::invalid_argument("invalid price");
     this->code = code;
     this->name = name;
     this->price = price;
-    throw std::logic_error("not implemented yet");
   }
 
   ~Product() { }
@@ -55,39 +56,32 @@ public:
   // std::invalid_argument.
   Catalog(int maxProducts) {
     // TODO: implement this function properly
+    if(maxProducts < 0)
+      throw std::invalid_argument("Products must be positive");
     this->maxProducts = maxProducts;
-    list = new Product[maxProducts];
-    throw std::logic_error("not implemented yet");
+    list = new DLinkedList();
   }
   
   ~Catalog() {
     // TODO: implement this function properly
-    delete [] list;
-    throw std::logic_error("not implemented yet");
+    list.clear();
   }
 
   // Accessors.
   int getMaxProducts() const {
     // TODO: implement this function properly
-    if(maxProducts > 0)
-     return maxProducts;
-    else
-     throw std::logic_error("not implemented yet");
+    return maxProducts;
   }
   
   int getNumProducts() const {
     // TODO: implement this function properly
-    if(list.size() == 0)
-      throw std::logic_error("not implemented yet");
-    else
      return list.size();
   }
 
   // Return true when the catalog cannot fit any more products.
   bool isFull() const {
     // TODO: implement this function properly
-    if(maxProducts == 0)
-    throw std::logic_error("not implemented yet");
+  
     if(list.size() == maxProducts)
       return true;
     return false;
@@ -106,12 +100,7 @@ public:
                   const std::string& name,
                   double price) {
     // TODO: implement this function properly
-    for (int i = 0; i < list.size(); i++)
-    {
-      if (code == list[i].findCode)
-    }
-    throw std::logic_error("not implemented yet");
-    list.add(new Product(code, name, price);
+   list.addBack(new Product(code,name,price));
   }
 
   // Find a product by its code.
@@ -124,11 +113,18 @@ public:
   // in the catalog.
   const Product& findCode(const std::string& code) const {
     // TODO: implement this function properly
-    throw std::logic_error("not implemented yet");
+   Product *ptr = list.front();
+   if(list.empty())
+      throw std::invalid_argument("List is empty");
+   while(ptr->code != code && ptr!=NULL)
+     ptr = ptr->next;
+    return ptr;
+    if(ptr == NULL)
+      throw std::invalid_argument("Product does not exist in this list");
   }
 
 private:
   // TODO: add data members
   int maxProducts;
- Product *list;
+ DLinkedList<Product> list;
 };
