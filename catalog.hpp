@@ -1,15 +1,12 @@
-
 // catalog.hpp
 // CSUF CPSC 131, Fall 2016, Project 1
 //
 // Classes that define a catalog of supermarket products.
 
 #pragma once
-#include <vector>
+using namespace std;
 #include <stdexcept>
 #include <string>
-
-using namespace std;
 
 // A product represents one particular kind of product, such as apples
 // or cereal.
@@ -61,13 +58,13 @@ public:
     if(maxProducts < 0)
       throw std::invalid_argument("Products must be positive");
     this->maxProducts = maxProducts;
-    list = new vector<Product>(maxProducts);
+    list = Product[maxProducts];
      
   }
   
   ~Catalog() {
     // TODO: implement this function properly
-    list.clear();
+    delete[] list;
   }
 
   // Accessors.
@@ -124,9 +121,10 @@ public:
   // in the catalog.
   const Product& findCode(const std::string& code) const {
     // TODO: implement this function properly
+   Product *ptr = list.front();
    if(list.empty())
       throw std::invalid_argument("List is empty");
-    for(vector<double>::size_type i = 0; i < student_marks.size(); i++)
+    for(int i = 0;i<list.size();i++)
     {
       if(list[i].getCode() == code) 
         return list[i];
@@ -137,5 +135,5 @@ public:
 private:
   // TODO: add data members
   int maxProducts;
-  vector <Product> list();
+ Product *list;
 };
