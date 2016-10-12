@@ -5,9 +5,11 @@
 // Classes that define a catalog of supermarket products.
 
 #pragma once
-using namespace std;
+#include <vector>
 #include <stdexcept>
 #include <string>
+
+using namespace std;
 
 // A product represents one particular kind of product, such as apples
 // or cereal.
