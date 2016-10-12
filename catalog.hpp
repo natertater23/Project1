@@ -59,7 +59,7 @@ public:
     if(maxProducts < 0)
       throw std::invalid_argument("Products must be positive");
     this->maxProducts = maxProducts;
-    list = Product[maxProducts];
+    list = new vector<maxProducts>();
      
   }
   
@@ -122,10 +122,9 @@ public:
   // in the catalog.
   const Product& findCode(const std::string& code) const {
     // TODO: implement this function properly
-   Product *ptr = list.front();
    if(list.empty())
       throw std::invalid_argument("List is empty");
-    for(int i = 0;i<list.size();i++)
+    for(vector<double>::size_type i = 0; i < student_marks.size(); i++)
     {
       if(list[i].getCode() == code) 
         return list[i];
@@ -136,5 +135,5 @@ public:
 private:
   // TODO: add data members
   int maxProducts;
- Product *list;
+  vector <Product> list();
 };
