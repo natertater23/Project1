@@ -61,13 +61,13 @@ public:
     if(maxProducts < 0)
       throw std::invalid_argument("Products must be positive");
     this->maxProducts = maxProducts;
-    list = new vector<maxProducts>();
+    list = new vector<Product>(maxProducts);
      
   }
   
   ~Catalog() {
     // TODO: implement this function properly
-    delete[] list;
+    list.clear();
   }
 
   // Accessors.
