@@ -59,12 +59,13 @@ public:
     if(maxProducts < 0)
       throw std::invalid_argument("Products must be positive");
     this->maxProducts = maxProducts;
-    list = new DLinkedList();
+    list = Product[maxProducts];
+     
   }
   
   ~Catalog() {
     // TODO: implement this function properly
-    list.clear();
+    delete[] list;
   }
 
   // Accessors.
@@ -100,7 +101,10 @@ public:
                   const std::string& name,
                   double price) {
     // TODO: implement this function properly
-   list.addBack(new Product(code,name,price));
+  if(isFull())
+    throw overflow_error("List is full");
+   list[getNumProducts()] = new Product(code,name,string);
+    getNumProducts++;
   }
 
   // Find a product by its code.
@@ -116,15 +120,16 @@ public:
    Product *ptr = list.front();
    if(list.empty())
       throw std::invalid_argument("List is empty");
-   while(ptr->code != code && ptr!=NULL)
-     ptr = ptr->next;
-    return ptr;
-    if(ptr == NULL)
-      throw std::invalid_argument("Product does not exist in this list");
+    for(int i = 0;i<list.size();i++)
+    {
+      if(list[i].getCode() == code) 
+        return list[i];
+    }
+    throw invalid_argument("Code not found");
   }
 
 private:
   // TODO: add data members
   int maxProducts;
- DLinkedList<Product> list;
+ Product *list;
 };
