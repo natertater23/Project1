@@ -5,7 +5,7 @@
 // Classes that define a catalog of supermarket products.
 
 #pragma once
-
+using namespace std;
 #include <stdexcept>
 #include <string>
 
