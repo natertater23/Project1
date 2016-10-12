@@ -97,13 +97,18 @@ public:
   //
   // Code must be different from all the product codes already in the
   // database. If it's not, throw std::invalid_argument.
+  
   void addProduct(const std::string& code,
                   const std::string& name,
                   double price) {
     // TODO: implement this function properly
+   if(price < 0)
+     throw std::invalid_argument("Invalid Price");
   if(isFull())
-    throw overflow_error("List is full");
-   list[getNumProducts()] = new Product(code,name,string);
+    throw std::overflow_error("List is full");
+   if(findCode(code)!=null)
+     throw std::invalid_argument("Code already there");
+      list[getNumProducts()] = new Product(code,name,string);
     getNumProducts++;
   }
 
@@ -125,7 +130,7 @@ public:
       if(list[i].getCode() == code) 
         return list[i];
     }
-    throw invalid_argument("Code not found");
+    throw std::invalid_argument("Code not found");
   }
 
 private:
